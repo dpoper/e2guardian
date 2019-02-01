@@ -28,8 +28,7 @@ stages:
     - build-amd64
 #                
 build-amd64:
-    stage: bREATE PACKAGE
-       - apt-get install -y git binutils && git clone https://github.com/fredbcode/scripts
+    stage: build-amd64
     image: amd64/debian:stable 
     variables:
       OS: "debian"
