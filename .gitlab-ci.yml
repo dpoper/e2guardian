@@ -28,7 +28,8 @@ stages:
     - build-amd64
 #                
 build-amd64:
-    stage: build-amd64
+    stage: bREATE PACKAGE
+       - apt-get install -y git binutils && git clone https://github.com/fredbcode/scripts
     image: amd64/debian:stable 
     variables:
       OS: "debian"
@@ -50,9 +51,9 @@ build-amd64:
       && adduser --no-create-home --system e2guardian 
       && addgroup --system e2guardian 
       # CREATE PACKAGE
-   - apt-get install -y git binutils && git clone https://github.com/fredbcode/scripts \
-   - cd scripts/debian_package && cp /usr/sbin/e2guardian e2${OS}_package/data/usr/sbin && cp -Rf /etc/e2guardian/* e2${OS}_package/data/etc/ && cp -rf /usr/share/e2guardian e2${OS}_package/data/usr/share  
-   - find e2${OS}_package/ -type f -name Makefil* -delete \
-   - find e2${OS}_package/ -type f -name *.in -delete \ 
+    - apt-get install -y git binutils && git clone https://github.com/fredbcode/scripts 
+    - cd scripts/debian_package && cp /usr/sbin/e2guardian e2${OS}_package/data/usr/sbin && cp -Rf /etc/e2guardian/* e2${OS}_package/data/etc/ && cp -rf /usr/share/e2guardian e2${OS}_package/data/usr/share  
+    - find e2${OS}_package/ -type f -name Makefil* -delete 
+    - find e2${OS}_package/ -type f -name *.in -delete  
     artifacts:
         name: "e2guardian"
