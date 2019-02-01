@@ -15,7 +15,7 @@ Package Docker Image:
         bash coreutils dash debianutils diffutils dpkg e2fsprogs findutils grep gzip hostname ncurses-base
         libevent-pthreads-* libevent-dev ncurses-bin perl-base sed login sysvinit-utils tar bsdutils
         mount util-linux libc6-dev libc-dev gcc g++ make dpkg-dev autotools-dev debhelper dh-autoreconf dpatch
-        libclamav-dev libpcre3-dev zlib1g-dev pkg-config libssl-dev libssl1.1 git ca-certificates lsb-release
+        libclamav-dev libpcre3-dev zlib1g-dev pkg-config libssl-dev libssl1.1 git ca-certificates lsb-release git binutils
       - cd /builds/fredbcode/e2guardian && ./autogen.sh && ./configure  '--prefix=/usr' '--enable-clamd=yes' '--with-proxyuser=e2guardian' '--with-proxygroup=e2guardian'
         '--sysconfdir=/etc' '--localstatedir=/var' '--enable-icap=yes' '--enable-commandline=yes' '--enable-email=yes'
         '--enable-ntlm=yes' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info'
@@ -35,7 +35,7 @@ Package Docker Image:
       - echo ${SIZE}
       - 'sed -i "s/Installed-Size:.*$/Installed-Size: $(SIZE)"/g" e2${OS}_package/control/control'
     script:
-      - apt-get install -y git binutils && git clone https://github.com/fredbcode/scripts
+      - git clone https://github.com/fredbcode/scripts
       - cd scripts/${OS}_package && cp /usr/sbin/e2guardian e2${OS}_package/data/usr/sbin && cp -Rf /etc/e2guardian/* e2${OS}_package/data/etc/ && cp -rf /usr/share/e2guardian e2${OS}_package/data/usr/share
       - find e2${OS}_package/ -type f -name Makefil* -delete
       - find e2${OS}_package/ -type f -name *.in -delete
