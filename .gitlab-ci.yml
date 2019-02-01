@@ -32,7 +32,8 @@ Package Docker Image:
       SIZE: $(stat -c %s e2${OS}_package/data)
       OS: "debian"
     before_script:
-      - echo $(SIZE) && 'sed -i "s/Installed-Size:.*$/Installed-Size: $(SIZE)"/g" e2${OS}_package/control/control'
+      - 'echo $(SIZE)'
+      - 'sed -i "s/Installed-Size:.*$/Installed-Size: $(SIZE)"/g" e2${OS}_package/control/control'
     script:
       - apt-get install -y git binutils && git clone https://github.com/fredbcode/scripts
       - cd scripts/${OS}_package && cp /usr/sbin/e2guardian e2${OS}_package/data/usr/sbin && cp -Rf /etc/e2guardian/* e2${OS}_package/data/etc/ && cp -rf /usr/share/e2guardian e2${OS}_package/data/usr/share
