@@ -29,7 +29,7 @@ Package Docker Image:
     stage: create-package
     variables:
       VFULL: $(/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2`)
-      SIZE: $(stat -c %s e2${OS}_package/data)
+      SIZE: 'stat -c %s e2${OS}_package/data)'
       OS: "debian"
     before_script:
       - echo ${SIZE}
