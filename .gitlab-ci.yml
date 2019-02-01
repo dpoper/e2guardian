@@ -1,7 +1,6 @@
 stages: 
     - build-amd64
-      #    - create-package
-#                
+    - create-package
 Package Docker Image:
     stage: build-amd64
     image: amd64/debian:stable 
