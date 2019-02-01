@@ -25,7 +25,7 @@ Package Docker Image:
         && adduser --no-create-home --system e2guardian
         && addgroup --system e2guardian
         
-    stage: create-package
+        #    stage: create-package
     variables:
       VFULL: $(/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2`)
       OS: "debian"
