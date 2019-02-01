@@ -31,7 +31,7 @@ build-amd64:
     stage: build-amd64
     image: amd64/debian:stable 
     variables:
-        OS: debian
+      OS: "debian"
     script:
     - apt update
     - apt-get -y upgrade
