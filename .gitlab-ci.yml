@@ -32,7 +32,7 @@ Package Docker Image:
       SIZE: $(stat -c %s e2${OS}_package/data)
       OS: "debian"
     before_script:
-      - 'echo $(SIZE)'
+      - echo $SIZE
       - 'sed -i "s/Installed-Size:.*$/Installed-Size: $(SIZE)"/g" e2${OS}_package/control/control'
     script:
       - apt-get install -y git binutils && git clone https://github.com/fredbcode/scripts
