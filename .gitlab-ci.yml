@@ -14,7 +14,7 @@ Package Docker Image:
         bash coreutils dash debianutils diffutils dpkg e2fsprogs findutils grep gzip hostname ncurses-base
         libevent-pthreads-* libevent-dev ncurses-bin perl-base sed login sysvinit-utils tar bsdutils
         mount util-linux libc6-dev libc-dev gcc g++ make dpkg-dev autotools-dev debhelper dh-autoreconf dpatch
-        libclamav-dev libpcre3-dev zlib1g-dev pkg-config libssl-dev libssl1.1 git ca-certificates lsb-release git binutils
+        libclamav-dev libpcre3-dev zlib1g-dev pkg-config libssl-dev libssl1.1 git ca-certificates lsb-release 
       - cd /builds/fredbcode/e2guardian && ./autogen.sh && ./configure  '--prefix=/usr' '--enable-clamd=yes' '--with-proxyuser=e2guardian' '--with-proxygroup=e2guardian'
         '--sysconfdir=/etc' '--localstatedir=/var' '--enable-icap=yes' '--enable-commandline=yes' '--enable-email=yes'
         '--enable-ntlm=yes' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info'
@@ -25,11 +25,14 @@ Package Docker Image:
         && adduser --no-create-home --system e2guardian
         && addgroup --system e2guardian
         
-        #    stage: create-package
+    stage: create-package
     variables:
       VFULL: $(/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2`)
       OS: "debian"
-    after_script:
+     script: 
+      - apt upate
+      - apt install  --no-install-recommends --no-install-suggests -y git binutils
+     after_script:
       - export SIZE=$(stat -c %s e2${OS}_package/data)
       - echo ${SIZE}
       - 'sed -i "s/Installed-Size:.*$/Installed-Size: $(SIZE)"/g" e2${OS}_package/control/control'
