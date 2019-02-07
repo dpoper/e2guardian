@@ -26,7 +26,7 @@ Package Docker Image:
     - make 
     - mkdir -p /builds/tmp"$OS"/share/e2guardian 
     - cp src/e2guardian /builds/tmp"$OS"/e2guardian.bin
-    - cp -rf data /builds/tmp"$OS" guardia
+    - cp -rf data /builds/tmp"$OS"
     - cp -Rf configs /builds/tmp"$OS"
     - cp -Rf data/languages /builds/tmp"$OS"/share/e2guardian/ 
     - cp data/*.gif /builds/tmp"$OS"/share/e2guardian/ 
