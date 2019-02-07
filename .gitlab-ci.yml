@@ -7,7 +7,7 @@ Package Docker Image:
   artifacts:
    name: build-debian
    paths:
-    - builds/
+    - /builds
   image: amd64/debian:stable
   variables:
    OS: "debian"
