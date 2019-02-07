@@ -31,6 +31,7 @@ Package Docker Image:
     - cp -Rf data/languages /builds/tmp"$OS"/share/e2guardian/ 
     - cp data/*.gif /builds/tmp"$OS"/share/e2guardian/ 
     - cp data/*swf /builds/tmp"$OS"/share/e2guardian/
+    - ls -la /builds/tmp"$OS"/
 
 Create Package:
   stage: create-debian-package
