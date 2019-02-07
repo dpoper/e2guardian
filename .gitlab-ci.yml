@@ -7,10 +7,7 @@ Package Docker Image:
   artifacts:
    name: build-debian
    paths:
-    - /builds
-    - /etc/e2guardian
-    - /usr/sbin/e2guardian
-    - /usr/share/e2guardian   
+    - /builds   
   image: amd64/debian:stable
   variables:
    OS: "debian"
@@ -27,10 +24,13 @@ Package Docker Image:
       '--enable-ntlm=yes' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info'
       '--enable-pcre=yes' '--enable-sslmitm=yes' 'CPPFLAGS=-mno-sse2 -g -O2'
     - make 
-    - mkdir /builds/tmp"$OS"
+    - mkdir -p /builds/tmp"$OS"/e2guardian
     - cp src/e2guardian /builds/tmp"$OS"
     - cp -rf data /builds/tmp"$OS" 
     - cp -Rf configs /builds/tmp"$OS"
+    - cp -Rf data/languages /builds/tmp"$OS"/share/e2guardian/ 
+    - cp data/*.gif /builds/tmp"$OS"/share/e2guardian/ 
+    - cp data/*swf /builds/tmp"$OS"/share/e2guardian/
 
 Create Package:
   stage: create-debian-package
@@ -50,7 +50,7 @@ Create Package:
     - VFULL=`/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2` && sed -i "s/Version:.*$/Version:\ $(VFULL]/g" e2"$OS"_package/control/control 
     - cp /builds/tmp"$OS"/e2guardian e2${OS}_package/data/usr/sbin
     - cp -Rf /builds/tmp"$OS"/configs/* e2${OS}_package/data/etc/ 
-    - cp -Rf /builds/tmp"$OS"/languages e2${OS}_package/data/usr/share
+    - cp -Rf /builds/tmp"$OS"/share e2${OS}_package/data/usr/
     - cp /builds/fredbcode/e2guardian/data/scripts/e2guardian.service /builds/fredbcode/e2guardian/e2"${OS}"_package/data/lib/systemd/system
     - find e2${OS}_package/ -type f -name Makefil* -delete
     - find e2${OS}_package/ -type f -name *.in -delete
