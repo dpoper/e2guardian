@@ -41,11 +41,12 @@ Create Package:
     - 'sed -i "s/Installed-Size:.*$/Installed-Size: $(SIZE)"/g" e2${OS}_package/control/control'
   script:
     - cd /builds/fredbcode/e2guardian 
-    - apt update && apt install --no-install-recommends --no-install-suggests -y curl git ca-certificates lsb-release
+    - apt update && apt install --no-install-recommends --no-install-suggests -y curl git ca-certificates lsb-release make && make install
     - git clone https://github.com/fredbcode/scripts
     - cd scripts/${OS}_package && cp /usr/sbin/e2guardian e2${OS}_package/data/usr/sbin && cp -Rf /etc/e2guardian/* e2${OS}_package/data/etc/ && cp -rf /usr/share/e2guardian e2${OS}_package/data/usr/share
     - find e2${OS}_package/ -type f -name Makefil* -delete
     - find e2${OS}_package/ -type f -name *.in -delete
-    - SIZE=$(stat -c %s e2${OS}_package/data) && sed -i "s/Installed-Size:.*$/Installed-Size: $(SIZE)/g" e2${OS}_package/control/control
-    - cp /builds/fredbcode/e2guardian/data/scripts/e2guardian.service /builds/fredbcode/e2guardian/e2${OS}_package/data/lib/systemd/system
+    - SIZE=$(stat -c %s e2${OS}_package/data) &&  sed -i "s/Installed-Size:.*$/Installed-Size:\ $(SIZE)/g" e2"${OS"_package/control/control
+    - VFULL=`/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2` && sed -i "s/Version:.*$/Version:\ $(VFULL]/g" e2"$OS"_package/control/control 
+    - cp /builds/fredbcode/e2guardian/data/scripts/e2guardian.service /builds/fredbcode/e2guardian/e2"${OS}"_package/data/lib/systemd/system
     - cat e2"$OS"_package/control/control && ./rebuild.sh e2"$OS"_package
