@@ -38,17 +38,18 @@ Create Package:
   variables:
     VFULL: $(/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2`)
     PACKPATH: "/builds/fredbcode/e2guardian/tmpdebian"
+    PACKDST: "scripts/debian_package/e2debian_package/
     OS: "debian"
   script:
     - cd /builds/fredbcode/e2guardian 
     - apt update && apt install --no-install-recommends --no-install-suggests -y curl git ca-certificates lsb-release
     - git clone https://github.com/fredbcode/scripts
-    - cp ${PACKPATH}/e2guardian.bin scripts/e2${OS}_package/data/usr/sbin/e2guardian
-    - cp -Rf ${PACKPATH}/configs/* scripts/e2${OS}_package/data/etc/ 
-    - cp -Rf ${PACPPATH]}/share scripts/e2${OS}_package/data/usr/
-    - cp /builds/fredbcode/e2guardian/data/scripts/e2guardian.service scripts/e2${OS}_package/data/lib/systemd/system
-    - find scripts/e2${OS}_package/ -type f -name Makefil* -delete
-    - find scripts/e2${OS}_package/ -type f -name *.in -delete
-    - export SIZE=$(stat -c %s scripts/e2${OS}_package/data) &&  sed -i "s/Installed-Size:.*$/Installed-Size:\ $(SIZE)/g" scripts/e2"${OS"_package/control/control
-    - export VFULL=`scripts/e2${OS}_package/data/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2` && sed -i "s/Version:.*$/Version:\ $(VFULL]/g" scripts/e2"${OS"_package/control/control 
-    - cat /builds/fredbcode/e2guardian/e2"$OS"_package/control/control &&  /builds/fredbcode/e2guardian/e2"$OS"_package/rebuild.sh e2"$OS"_package
+    - cp ${PACKPATH}/e2guardian.bin ${PACKDST}/data/usr/sbin/e2guardian
+    - cp -Rf ${PACKPATH}/configs/* ${PACKDST}/data/etc/ 
+    - cp -Rf ${PACPPATH]}/share ${PACKDST}/data/usr/
+    - cp /builds/fredbcode/e2guardian/data/scripts/e2guardian.service ${PACKDST}/data/lib/systemd/system
+    - find ${PACKDST}/e2${OS}_package/ -type f -name Makefil* -delete
+    - find ${PACKDST}/e2${OS}_package/ -type f -name *.in -delete
+    - export SIZE=$(stat -c %s ${PACKDST}/data) &&  sed -i "s/Installed-Size:.*$/Installed-Size:\ $(SIZE)/g" ${PACKDST}/control/control
+    - export VFULL=`${PACKDST}/data/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2` && sed -i "s/Version:.*$/Version:\ $(VFULL]/g" ${PACKDST}/control/control 
+    - cd ${PACKDST} && cd .. && ./rebuild.sh e2"$OS"_package
