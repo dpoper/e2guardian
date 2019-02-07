@@ -44,7 +44,7 @@ Create Package:
     - 'sed -i "s/Installed-Size:.*$/Installed-Size: $(SIZE)"/g" e2${OS}_package/control/control'
   script:
     - cd /builds/fredbcode/e2guardian 
-    - apt update && apt install git
+    - apt update && apt install --no-install-recommends --no-install-suggests -y curl git
     - git clone https://github.com/fredbcode/scripts
     - cd scripts/${OS}_package && cp /usr/sbin/e2guardian e2${OS}_package/data/usr/sbin && cp -Rf /etc/e2guardian/* e2${OS}_package/data/etc/ && cp -rf /usr/share/e2guardian e2${OS}_package/data/usr/share
     - find e2${OS}_package/ -type f -name Makefil* -delete
