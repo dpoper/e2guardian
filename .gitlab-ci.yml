@@ -30,14 +30,14 @@ Create Package:
   image: amd64/debian:stable
   variables:
     VFULL: $(/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2`)
-    PACKPATH: "/builds/fredbcode/e2guardian/"
+    PACKPATH: "/builds/fredbcode/e2guardian"
     PACKDST: "/builds/fredbcode/e2guardian/scripts/debian_package/e2debian_package"
     OS: "debian"
   script:
     - cd /builds/fredbcode/e2guardian 
     - apt update && apt install --no-install-recommends --no-install-suggests -y curl git ca-certificates lsb-release
     - git clone https://github.com/fredbcode/scripts
-    - cp ${PACKPATH}/e2guardian.bin ${PACKDST}/data/usr/sbin/e2guardian
+    - cp ${PACKPATH}/src/e2guardian ${PACKDST}/data/usr/sbin/e2guardian
     - cp -Rf ${PACKPATH}/configs/* ${PACKDST}/data/etc/ 
     - cp -Rf ${PACPPATH]}/share ${PACKDST}/data/usr/
     - cp /builds/fredbcode/e2guardian/data/scripts/e2guardian.service ${PACKDST}/data/lib/systemd/system
