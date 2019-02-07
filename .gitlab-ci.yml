@@ -8,6 +8,9 @@ Package Docker Image:
    name: build-debian
    paths:
     - /builds
+    - /etc/e2guardian
+    - /usr/sbin/e2guardian
+    - /usr/share/e2guardian   
   image: amd64/debian:stable
   variables:
    OS: "debian"
@@ -41,7 +44,7 @@ Create Package:
     - 'sed -i "s/Installed-Size:.*$/Installed-Size: $(SIZE)"/g" e2${OS}_package/control/control'
   script:
     - cd /builds/fredbcode/e2guardian 
-    - apt update && apt install --no-install-recommends --no-install-suggests -y curl git ca-certificates lsb-release make && make install
+    - apt update && apt install --no-install-recommends --no-install-suggests -y curl git ca-certificates lsb-release
     - git clone https://github.com/fredbcode/scripts
     - cd scripts/${OS}_package && cp /usr/sbin/e2guardian e2${OS}_package/data/usr/sbin && cp -Rf /etc/e2guardian/* e2${OS}_package/data/etc/ && cp -rf /usr/share/e2guardian e2${OS}_package/data/usr/share
     - find e2${OS}_package/ -type f -name Makefil* -delete
