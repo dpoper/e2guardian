@@ -24,21 +24,14 @@ Package Docker Image:
       '--enable-ntlm=yes' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info'
       '--enable-pcre=yes' '--enable-sslmitm=yes' 'CPPFLAGS=-mno-sse2 -g -O2'
     - make 
-    - mkdir -p /builds/fredbcode/e2guardian/tmp"$OS"/share/e2guardian 
-    - cp src/e2guardian /builds/fredbcode/e2guardian/tmp"$OS"/e2guardian.bin
-    - cp -rf data /builds/fredbcode/e2guardian/tmp"$OS"
-    - cp -Rf configs /builds/fredbcode/e2guardian/tmp"$OS"
-    - cp -Rf data/languages /builds/fredbcode/e2guardian/tmp"$OS"/share/e2guardian/ 
-    - cp data/*.gif /builds/fredbcode/e2guardian/tmp"$OS"/share/e2guardian/ 
-    - cp data/*swf /builds/fredbcode/e2guardian/tmp"$OS"/share/e2guardian/
 
 Create Package:
   stage: create-debian-package
   image: amd64/debian:stable
   variables:
     VFULL: $(/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2`)
-    PACKPATH: "/builds/fredbcode/e2guardian/tmpdebian"
-    PACKDST: "/builds/fredbcode/e2guardian/tmpdebian/scripts/debian_package/e2debian_package/"
+    PACKPATH: "/builds/fredbcode/e2guardian/"
+    PACKDST: "/builds/fredbcode/e2guardian/scripts/debian_package/e2debian_package"
     OS: "debian"
   script:
     - cd /builds/fredbcode/e2guardian 
