@@ -38,7 +38,7 @@ Create Package:
   variables:
     VFULL: $(/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2`)
     PACKPATH: "/builds/fredbcode/e2guardian/tmpdebian"
-    PACKDST: "scripts/debian_package/e2debian_package/
+    PACKDST: "/builds/fredbcode/e2guardian/tmpdebian/scripts/debian_package/e2debian_package/"
     OS: "debian"
   script:
     - cd /builds/fredbcode/e2guardian 
