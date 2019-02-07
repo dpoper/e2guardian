@@ -39,7 +39,7 @@ Create Package:
     - git clone https://github.com/fredbcode/scripts
     - cp ${PACKPATH}/src/e2guardian ${PACKDST}/data/usr/sbin/e2guardian
     - cp -Rf ${PACKPATH}/configs/* ${PACKDST}/data/etc/ 
-    - cp -Rf ${PACPPATH]}/share ${PACKDST}/data/usr/
+    - cp -Rf ${PACKPATH]}/share ${PACKDST}/data/usr/
     - cp /builds/fredbcode/e2guardian/data/scripts/e2guardian.service ${PACKDST}/data/lib/systemd/system
     - find ${PACKDST}/e2${OS}_package/ -type f -name Makefil* -delete
     - find ${PACKDST}/e2${OS}_package/ -type f -name *.in -delete
