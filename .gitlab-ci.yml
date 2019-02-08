@@ -4,7 +4,7 @@ stages:
 - build:ubuntu
 - create-ubuntu-package
 
-Package Docker Image:
+Package Docker Image Debian:
   stage: build:debian
   artifacts:
    name: build-debian
@@ -27,7 +27,7 @@ Package Docker Image:
       '--enable-pcre=yes' '--enable-sslmitm=yes' 'CPPFLAGS=-mno-sse2 -g -O2'
     - make 
 
-Create Package:
+Create Debian Package:
   stage: create-debian-package
   image: amd64/debian:stable
   variables:
@@ -58,7 +58,7 @@ Create Package:
     - git commit -m "Commit "$OS" ${CI_COMMIT_REF_NAME} Package" 
     - git push
     
-Package Docker Image:
+Package Docker Image Ubuntu:
   stage: build:ubuntu
   artifacts:
    name: build-ubuntu
@@ -79,7 +79,7 @@ Package Docker Image:
       '--enable-pcre=yes' '--enable-sslmitm=yes' 'CPPFLAGS=-mno-sse2 -g -O2'
     - make 
 
-Create Package:
+Create Ubuntu Package:
   stage: create-ubuntu-package
   image: amd64/ubuntu:18.04
   variables:
