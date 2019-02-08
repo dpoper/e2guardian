@@ -60,7 +60,7 @@ Package Docker Image:
    name: build-ubuntu
    paths:
     - /builds   
-  image: amd64/ubuntu:stretch
+  image: amd64/ubuntu:stable
   variables:
    OS: "ubuntu"
   script:
