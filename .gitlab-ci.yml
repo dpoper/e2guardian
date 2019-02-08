@@ -12,7 +12,7 @@ Package Docker Image:
     - /builds   
   image: amd64/debian:stable
   variables:
-   OS: "debian"
+    OS: "debian"
   script:
     - apt update
     - apt-get -y upgrade
@@ -56,13 +56,9 @@ Create Package:
 
 Package Docker Image:
   stage: build:ubuntu
-  artifacts:
-   name: build-ubuntu
-   paths:
-    - /builds  
-    - image: amd64/ubuntu:18.04
+  image: amd64/ubuntu:18.04
   variables:
-   OS: "ubuntu"
+    OS: "ubuntu"
   script:
     - apt update
     - apt-get -y upgrade
