@@ -34,8 +34,6 @@ Create Debian Package:
     PACKPATH: "/builds/fredbcode/e2guardian"
     PACKDST: "/builds/fredbcode/e2guardian/scripts/debian_package/e2debian_package"
     OS: "debian"
-  before_script:
-    - export COMMIT_TIME=$(git show -s --format=%ct $CI_COMMIT_SHA)  
   script:
     - cd /builds/fredbcode/e2guardian 
     - apt update && apt install --no-install-recommends --no-install-suggests -y curl git ca-certificates lsb-release util-linux binutils
@@ -53,6 +51,7 @@ Create Debian Package:
     - VFULL=`${PACKDST}/data/usr/sbin/e2guardian -v | sed -n 1p | cut -d ' ' -f 2` && sed -i "s/Version:.*$/Version:\ $VFULL/g" ${PACKDST}/control/control 
     - cd ${PACKDST} && cd .. && ./rebuild.sh e2"$OS"_package
     - git clone -b packages --single-branch https://gitlab.com/fredbcode/e2guardian.git gitpackages
+    - export COMMIT_TIME=$(git show -s --format=%ct $CI_COMMIT_SHA)
     - mv e2"$OS"_package.deb gitpackages/e2"$OS"_${CI_COMMIT_REF_NAME}_${COMMIT_TIME}.deb
     - cd gitpackages
     - git add *.deb
@@ -89,8 +88,6 @@ Create Ubuntu Package:
     PACKPATH: "/builds/fredbcode/e2guardian"
     PACKDST: "/builds/fredbcode/e2guardian/scripts/debian_package/e2ubuntu_package"
     OS: "ubuntu"
-  before_script:
-    - export COMMIT_TIME=$(git show -s --format=%ct $CI_COMMIT_SHA) 
   script:
     - cd /builds/fredbcode/e2guardian 
     - apt update && apt install --no-install-recommends --no-install-suggests -y curl git ca-certificates lsb-release util-linux binutils
@@ -109,6 +106,7 @@ Create Ubuntu Package:
     - VFULL=`${PACKDST}/data/usr/sbin/e2guardian -v | sed -n 1p | cut -d ' ' -f 2` && sed -i "s/Version:.*$/Version:\ "$(VFULL)"/g" ${PACKDST}/control/control 
     - cd ${PACKDST} && cd .. && ./rebuild.sh e2"$OS"_package
     - git clone -b packages --single-branch https://gitlab.com/fredbcode/e2guardian.git gitpackages
+    - export COMMIT_TIME=$(git show -s --format=%ct $CI_COMMIT_SHA)
     - mv e2"$OS"_package.deb gitpackages/e2"$OS"_${CI_COMMIT_REF_NAME}_${COMMIT_TIME}.deb
     - cd gitpackages
     - git add *.deb
