@@ -57,7 +57,7 @@ Create Debian Package:
     - git add *.deb
     - git config --global user.name "${GITLAB_USER_NAME}"
     - git config --global user.email "${GITLAB_USER_EMAIL}"
-    - git commit -m "Commit "$OS" ${CI_COMMIT_REF_NAME} Package" http://"$YOUR_USERNAME":"$PERSONAL_ACCESS_TOKEN"@https://gitlab.com/fredbcode/e2guardian
+    - git commit -m "Commit "$OS" ${CI_COMMIT_REF_NAME} Package" http://${YOUR_USERNAME}:${PERSONAL_ACCESS_TOKEN}@https://gitlab.com/fredbcode/e2guardian
     - git push
     
 Package Docker Image Ubuntu:
