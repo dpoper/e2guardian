@@ -59,8 +59,8 @@ Package Docker Image:
   artifacts:
    name: build-ubuntu
    paths:
-    - /builds   
-  image: amd64/ubuntu:stable
+    - /builds  
+    - image: amd64/ubuntu:18.04
   variables:
    OS: "ubuntu"
   script:
