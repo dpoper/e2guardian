@@ -63,7 +63,7 @@ Package Docker Image:
     - apt update
     - apt-get -y upgrade
     - apt install --no-install-recommends --no-install-suggests -y curl unzip base-files automake base-passwd
-      bash coreutils dash ubuntuutils diffutils dpkg e2fsprogs findutils grep gzip hostname ncurses-base
+      bash coreutils dash debianutils diffutils dpkg e2fsprogs findutils grep gzip hostname ncurses-base
       libevent-pthreads-* libevent-dev ncurses-bin perl-base sed login sysvinit-utils tar bsdutils
       mount util-linux libc6-dev libc-dev gcc g++ make dpkg-dev autotools-dev debhelper dh-autoreconf dpatch
       libclamav-dev libpcre3-dev zlib1g-dev pkg-config libssl-dev libssl1.1 git ca-certificates lsb-release
