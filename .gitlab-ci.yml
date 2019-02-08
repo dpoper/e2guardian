@@ -54,7 +54,7 @@ Create Debian Package:
     - cd ${PACKDST} && cd .. && ./rebuild.sh e2"$OS"_package
     - mv e2"$OS"_package.deb e2"$OS"_${CI_COMMIT_REF_NAME}.deb
     - git branch packages
-    - git checkout *.deb
+    - git add *.deb
     - git commit -m "Commit "$OS" ${CI_COMMIT_REF_NAME} Package" 
     - git push
     
@@ -106,6 +106,6 @@ Create Ubuntu Package:
     - cd ${PACKDST} && cd .. && ./rebuild.sh e2"$OS"_package
     - mv e2"$OS"_package.deb e2"$OS"_${CI_COMMIT_REF_NAME}.deb
     - git branch packages
-    - git checkout *.deb
+    - git add *.deb
     - git commit -m "Commit "$OS" ${CI_COMMIT_REF_NAME} Package" 
     - git push
