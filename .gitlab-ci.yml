@@ -38,8 +38,8 @@ Create Package:
     - apt update && apt install --no-install-recommends --no-install-suggests -y curl git ca-certificates lsb-release
     - git clone https://github.com/fredbcode/scripts
     - cp ${PACKPATH}/src/e2guardian ${PACKDST}/data/usr/sbin/e2guardian
-    - cp -Rf ${PACKPATH}/configs/* ${PACKDST}/data/etc/e2guardian/ 
-    - cp -Rf ${PACKPATH}/share ${PACKDST}/data/usr/
+    - cp -Rf ${PACKPATH}/configs ${PACKDST}/data/etc/e2guardian/
+    - mkdir -p  ${PACKPATH}/share/e2guardian/languages
     - cp -Rf ${PACKPATH}/data/languages ${PACKDST}/data/usr/share/e2guardian/
     - cp ${PACKPATH}/data/*.gif ${PACKDST}/data/usr/share/e2guardian/
     - cp ${PACKPATH}/data/*swf ${PACKDST}/data/usr/share/e2guardian/
