@@ -55,6 +55,8 @@ Create Debian Package:
     - mv e2"$OS"_package.deb e2"$OS"_${CI_COMMIT_REF_NAME}.deb
     - git branch packages
     - git add *.deb
+    - git config --global user.email "you@example.com"
+    - git config --global user.name "Your Name"
     - git commit -m "Commit "$OS" ${CI_COMMIT_REF_NAME} Package" 
     - git push
     
