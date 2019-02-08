@@ -35,7 +35,7 @@ Create Package:
     OS: "debian"
   script:
     - cd /builds/fredbcode/e2guardian 
-    - apt update && apt install --no-install-recommends --no-install-suggests -y curl git ca-certificates lsb-release
+    - apt update && apt install --no-install-recommends --no-install-suggests -y curl git ca-certificates lsb-release util-linux binutils
     - git clone https://github.com/fredbcode/scripts
     - cp ${PACKPATH}/src/e2guardian ${PACKDST}/data/usr/sbin/e2guardian
     - cp -Rf ${PACKPATH}/configs ${PACKDST}/data/etc/e2guardian/
@@ -46,8 +46,9 @@ Create Package:
     - cp ${PACKPATH}/data/scripts/e2guardian.service ${PACKDST}/data/lib/systemd/system
  #   - find ${PACKDST}/ -type f -name Makefil* -delete
  #   - find ${PACKDST}/ -type f -name *.in -delete
- #   - SIZE=`stat -c %s ${PACKDST}/data` &&  sed -i "s/Installed-Size:.*$/Installed-Size:\ "$SIZE"/g" ${PACKDST}/control/control
+    - SIZE=`stat -c %s ${PACKDST}/data` &&  sed -i "s/Installed-Size:.*$/Installed-Size:\ "$SIZE"/g" ${PACKDST}/control/control
     - ${PACKDST}/data/usr/sbin/e2guardian -v
-    - VFULL=`${PACKDST}/data/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2` && sed -i "s/Version:.*$/Version:\ "$(VFULL)"/g" ${PACKDST}/control/control 
+    - echo ${CI_PROJECT_NAME}
+    - VFULL=`${PACKDST}/data/usr/sbin/e2guardian -v | sed -n 1p | cut -d "\ " -f 2` && sed -i "s/Version:.*$/Version:\ "$(VFULL)"/g" ${PACKDST}/control/control 
     - find ${PACKDST}/ -type f -name toto.in -delete
     - cd ${PACKDST} && cd .. && ./rebuild.sh e2"$OS"_package
