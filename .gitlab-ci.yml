@@ -81,7 +81,7 @@ Create Package:
   variables:
     VFULL: $(/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2`)
     PACKPATH: "/builds/fredbcode/e2guardian"
-    PACKDST: "/builds/fredbcode/e2guardian/scripts/ubuntu_package/e2ubuntu_package"
+    PACKDST: "/builds/fredbcode/e2guardian/scripts/debian_package/e2ubuntu_package"
     OS: "ubuntu"
   script:
     - cd /builds/fredbcode/e2guardian 
