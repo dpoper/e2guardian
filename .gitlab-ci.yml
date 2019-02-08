@@ -56,9 +56,11 @@ Create Package:
 
 Package Docker Image:
   stage: build:ubuntu
+  artifacts:
+   name: build-ubuntu
+   paths:
+    - /builds   
   image: amd64/ubuntu:18.04
-  variables:
-    OS: "ubuntu"
   script:
     - apt update
     - apt-get -y upgrade
@@ -75,7 +77,7 @@ Package Docker Image:
 
 Create Package:
   stage: create-ubuntu-package
-  image: amd64/ubuntu:stable
+  image: amd64/ubuntu:18.04
   variables:
     VFULL: $(/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2`)
     PACKPATH: "/builds/fredbcode/e2guardian"
